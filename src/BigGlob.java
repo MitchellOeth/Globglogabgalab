@@ -1,8 +1,9 @@
-
+import java.awt.Graphics;
 public class BigGlob {
-
-	public BigGlob() {
-		// TODO Auto-generated constructor stub
-	}
-
+void update() {
+	
+}
+void draw(Graphics graphic) {
+	
+}	
 }
