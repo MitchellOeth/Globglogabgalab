@@ -12,8 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
-	BigGlob you = new BigGlob(450, 350, 100, 100);
+	static BigGlob you = new BigGlob(450, 350, 100, 100);
 	ObjectManager objectManager = new ObjectManager(you);
+	
 	Font titleFont = new Font("Arial", Font.BOLD, 48);
 	Font normalFont = new Font("Arial", Font.PLAIN, 25);
 	Timer framerate;
@@ -25,6 +26,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	void startGame() {
 		framerate.start();
+		for (int i = 0; i < 500 ; i++) {
+			ObjectManager.tail.add(new Tail(450, 350+i, 100, 100));
+		}
 	}
 
 	public void paintComponent(Graphics graphic) {
@@ -55,6 +59,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (currentState == END_STATE) {
 				you = new BigGlob(450, 350, 100, 100);
 				objectManager = new ObjectManager(you);
+				for (int i = 0; i < 500 ; i++) {
+					ObjectManager.tail.add(new Tail(450, 350+i, 100, 100));
+				}
+				
 			}
 			if (currentState > END_STATE) {
 				currentState = MENU_STATE;
@@ -109,7 +117,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		// DONE
 		graphic.setColor(Color.BLACK);
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
-		you.draw(graphic);
 		objectManager.draw(graphic);
 		objectManager.checkCollision();
 	}
@@ -125,8 +132,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		graphic.drawString("You killed " + kill + " enemies", 400, 400);
 		graphic.drawString("Press ENTER to restart", 385, 600);
 		if (currentState == END_STATE) {
-			you = new BigGlob(500, 500, 100, 100);
+			you = new BigGlob(450, 350, 100, 100);
 			objectManager = new ObjectManager(you);
+			for (int i = 0; i < 500 ; i++) {
+				ObjectManager.tail.add(new Tail(450, 350+i, 100, 100));
+			}
 			kill = 0;
 		}
 	}
