@@ -1,20 +1,23 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class BigGlob extends GameObject{
-
+public class BigGlob extends GameObject {
 	BigGlob(int x, int y, int width, int height) {
 		super(x, y, width, height);
 	}
 
+	double globY;
+
 	void update() {
-y = 800-(int)Math.abs(Math.sqrt(-((GamePanel.mouseX-500)^2)+160000));
-System.out.println(y);
-System.out.println("Glob update");
+		if(GamePanel.mouseX>=100&&GamePanel.mouseX<=900) {
+		globY = 700.0 - Math.sqrt(-(Math.pow((GamePanel.mouseX-500), 2)) + 160000.0);
+		}else {
+			globY = 700.0;
+		}
 	}
 
 	void draw(Graphics graphic) {
 		graphic.setColor(Color.BLUE);
-		graphic.fillOval(GamePanel.mouseX, y, width, height);
-		}
+		graphic.fillOval(GamePanel.mouseX, (int) globY, width, height);
 	}
+}

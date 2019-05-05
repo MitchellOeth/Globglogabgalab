@@ -1,6 +1,6 @@
 public class GameObject{
 	int x;
-	static int y;
+	int y;
 	int width;
 	int height;
 	

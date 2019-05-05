@@ -1,9 +1,7 @@
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ObjectManager {
-	
 	BigGlob glob;
 	static ArrayList<Tail> tail = new ArrayList<Tail>();
 	ObjectManager(BigGlob glob) {

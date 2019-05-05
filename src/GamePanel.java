@@ -4,13 +4,9 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -147,23 +143,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void keyTyped(KeyEvent event) {
-		// Nothing goes here
 
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 		mouseX = e.getX();
 		mouseY = e.getY();
-		 System.out.println("x "+ mouseX);
-		 System.out.println("y "+ BigGlob.y);
+	//	System.out.println("x "+ mouseX);
+		// System.out.println("y "+ BigGlob.y);
 	}
 
 }
