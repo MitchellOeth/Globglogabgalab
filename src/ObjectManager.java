@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ObjectManager {
+	
 	BigGlob glob;
 	static ArrayList<Tail> tail = new ArrayList<Tail>();
 	ObjectManager(BigGlob glob) {
@@ -12,11 +13,13 @@ public class ObjectManager {
 
 	void update() {
 		GamePanel.you.update();
+		glob.update();
 	}
 
 	void draw(Graphics graphic) {
 		GamePanel.you.draw(graphic);
 		tail.get(1).draw(graphic);
+		glob.draw();
 		
 		
 	}

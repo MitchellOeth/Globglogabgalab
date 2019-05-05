@@ -22,9 +22,10 @@ public class Globglogabgalab {
 		frame.addKeyListener(gamePanel);
 		frame.add(gamePanel);
 		frame.setPreferredSize(new Dimension(width, height));
-		frame.setVisible(true);
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 		gamePanel.startGame();
 	}
 }

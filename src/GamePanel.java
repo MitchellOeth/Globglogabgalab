@@ -8,13 +8,17 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements ActionListener, KeyListener {
+public class GamePanel extends JPanel implements ActionListener, KeyListener, MouseMotionListener {
 	static BigGlob you = new BigGlob(450, 350, 100, 100);
 	ObjectManager objectManager = new ObjectManager(you);
-	
+	public static int mouseX;
+	public static int mouseY;
 	Font titleFont = new Font("Arial", Font.BOLD, 48);
 	Font normalFont = new Font("Arial", Font.PLAIN, 25);
 	Timer framerate;
@@ -22,6 +26,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public GamePanel() {
 		framerate = new Timer(1000 / 60, this);
 		addKeyListener(this);
+		addMouseMotionListener(this);
 	}
 
 	void startGame() {
@@ -144,6 +149,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void keyTyped(KeyEvent event) {
 		// Nothing goes here
 
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		mouseX = e.getX();
+		mouseY = e.getY();
+		 System.out.println("x "+ mouseX);
+		 System.out.println("y "+ BigGlob.y);
 	}
 
 }
