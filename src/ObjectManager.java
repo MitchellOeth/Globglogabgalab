@@ -12,11 +12,17 @@ public class ObjectManager {
 	void update() {
 		GamePanel.you.update();
 		glob.update();
+		for (int i = 1; i <= tail.size(); i++) {
+			//tail.get(i).update();
+		}
+		
 	}
 
 	void draw(Graphics graphic) {
 		GamePanel.you.draw(graphic);
-		tail.get(1).draw(graphic);
+		for (int i = 1; i <= tail.size(); i++) {
+			//tail.get(i).draw(graphic);
+		}
 		glob.draw();
 		
 		
