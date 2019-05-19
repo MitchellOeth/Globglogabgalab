@@ -27,8 +27,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	void startGame() {
 		framerate.start();
-		for (int i = 0; i < 500 ; i++) {
-			ObjectManager.tail.add(new Tail(450, 350+i, 100, 100));
+		for (int i = 0; i < 500; i++) {
+			ObjectManager.tail.add(new Tail(450, 350 + i, 100, 100));
 		}
 	}
 
@@ -60,10 +60,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			if (currentState == END_STATE) {
 				you = new BigGlob(450, 350, 100, 100);
 				objectManager = new ObjectManager(you);
-				for (int i = 0; i < 500 ; i++) {
-					ObjectManager.tail.add(new Tail(450, 350+i, 100, 100));
+				for (int i = 0; i < 500; i++) {
+					ObjectManager.tail.add(new Tail(450, 350 + i, 100, 100));
 				}
-				
+
 			}
 			if (currentState > END_STATE) {
 				currentState = MENU_STATE;
@@ -135,8 +135,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if (currentState == END_STATE) {
 			you = new BigGlob(450, 350, 100, 100);
 			objectManager = new ObjectManager(you);
-			for (int i = 0; i < 500 ; i++) {
-				ObjectManager.tail.add(new Tail(450, 350+i, 100, 100));
+			for (int i = 0; i < 500; i++) {
+				ObjectManager.tail.add(new Tail(450, 350 + i, 100, 100));
 			}
 			kill = 0;
 		}
@@ -148,14 +148,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		mouseX = e.getX();
 		mouseY = e.getY();
-	//	System.out.println("x "+ mouseX);
+		// System.out.println("x "+ mouseX);
 		// System.out.println("y "+ BigGlob.y);
 	}
 

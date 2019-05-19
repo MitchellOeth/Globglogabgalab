@@ -6,12 +6,12 @@ public class BigGlob extends GameObject {
 		super(x, y, width, height);
 	}
 
-	double globY;
+	static double globY;
 
 	void update() {
-		if(GamePanel.mouseX>=100&&GamePanel.mouseX<=900) {
-		globY = 700.0 - Math.sqrt(-(Math.pow((GamePanel.mouseX-500), 2)) + 160000.0);
-		}else {
+		if (GamePanel.mouseX >= 100 && GamePanel.mouseX <= 900) {
+			globY = 700.0 - Math.sqrt(-(Math.pow((GamePanel.mouseX - 500), 2)) + Math.pow(400, 2));
+		} else {
 			globY = 700.0;
 		}
 	}
