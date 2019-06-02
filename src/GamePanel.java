@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Timer framerate;
 
 	public GamePanel() {
-		framerate = new Timer(1000 / 60, this);
+		framerate = new Timer(1000 / 1000000000, this);
 		addKeyListener(this);
 		addMouseMotionListener(this);
 	}
