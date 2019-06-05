@@ -3,22 +3,30 @@ import java.awt.Graphics;
 import java.util.concurrent.TimeUnit;
 
 public class Tail extends GameObject {
-	public Tail(int x, int y, int width, int height) {
+	public Tail(double x, double y, int width, int height) {
 		super(x, y, width, height);
 
 	}
 
-	double sampleX;
-	double tailGlobY;
+	
 
-	void update() {
+	void update(double prevX,  double prevY, double nextX, double nextY) {
+		/*if(ObjectManager.tailA<400) {
+		tailGlobY = 800-(800-prevY-(800-prevY)/(400-ObjectManager.tailA));
+		sampleX = 500 +prevX-500+ (prevX-500)/(400-ObjectManager.tailA);
+		} else {
+			tailGlobY = 800;
+			sampleX = 500;
+		}*/
+		y = (prevY + nextY)/2;
+		x = (prevX + nextX)/2;
+
 		
-		tailGlobY = (BigGlob.globY + ObjectManager.tailA);
-		sampleX = (GamePanel.mouseX - 500) * (800 - tailGlobY) / (800 - BigGlob.globY);
+		
 	}
 
 	void draw(Graphics graphic) {
 		graphic.setColor(Color.WHITE);
-		graphic.fillOval((int) sampleX + 500, (int) tailGlobY, width, height);
+		graphic.fillOval((int) x, (int) y, width, height);
 	}
 }

@@ -20,14 +20,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Timer framerate;
 
 	public GamePanel() {
-		framerate = new Timer(1000 / 1000000000, this);
+		framerate = new Timer(1000 / 60, this);
 		addKeyListener(this);
 		addMouseMotionListener(this);
 	}
 
 	void startGame() {
 		framerate.start();
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 500; i+=25) {
 			ObjectManager.tail.add(new Tail(450, 350 + i, 100, 100));
 		}
 	}
@@ -119,7 +119,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.setColor(Color.BLACK);
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
 		objectManager.draw(graphic);
-		objectManager.checkCollision();
 	}
 
 	void drawEndState(Graphics graphic) {
