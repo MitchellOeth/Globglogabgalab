@@ -18,6 +18,7 @@ public class BigGlob extends GameObject {
 
 	void draw(Graphics graphic) {
 		graphic.setColor(Color.BLUE);
-		graphic.fillOval(GamePanel.mouseX, (int) globY, width, height);
+		graphic.fillOval(GamePanel.mouseX-50, GamePanel.mouseY-50, width, height);
+		
 	}
 }

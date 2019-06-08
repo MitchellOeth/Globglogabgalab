@@ -27,9 +27,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	void startGame() {
 		framerate.start();
-		for (int i = 0; i < 500; i+=25) {
-			ObjectManager.tail.add(new Tail(450, 350 + i, 100, 100));
+		for (double i = 0; i < 500; i+=25) {
+			ObjectManager.tailDownArrayList.add(new Tail(450, 350 + i, 100, 100));
 		}
+		for (double i = 0; i < 100; i+=25) {
+			ObjectManager.tailUpArrayList.add(new TailUp(450, 350 - i, 100, 100));
+		}
+		//For loop add tail up's
 	}
 
 	public void paintComponent(Graphics graphic) {
@@ -57,12 +61,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void keyPressed(KeyEvent event) {
 		if (event.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
-			if (currentState == END_STATE) {
-				you = new BigGlob(450, 350, 100, 100);
-				objectManager = new ObjectManager(you);
-				for (int i = 0; i < 500; i++) {
-					ObjectManager.tail.add(new Tail(450, 350 + i, 100, 100));
-				}
 
 			}
 			if (currentState > END_STATE) {
@@ -70,13 +68,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			}
 		}
 
-		// Code here
-
-	}
-
 	public void keyReleased(KeyEvent event) {
 
-		// Code here
+
 
 	}
 
@@ -87,12 +81,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static int kill = 0;
 
 	void updateMenuState() {
-		// Nothing goes here
 	}
 
 	void updateGameState() {
 
-		// Code here
 
 		objectManager.update();
 		objectManager.manageEnemies();
@@ -115,14 +107,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	void drawGameState(Graphics graphic) {
-		// DONE
 		graphic.setColor(Color.BLACK);
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
 		objectManager.draw(graphic);
 	}
 
 	void drawEndState(Graphics graphic) {
-		// DONE
 		graphic.setColor(Color.RED);
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
 		graphic.setColor(Color.BLACK);
@@ -134,9 +124,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if (currentState == END_STATE) {
 			you = new BigGlob(450, 350, 100, 100);
 			objectManager = new ObjectManager(you);
-			for (int i = 0; i < 500; i++) {
-				ObjectManager.tail.add(new Tail(450, 350 + i, 100, 100));
+			for (int i = 0; i < 500; i+=25) {
+				ObjectManager.tailDownArrayList.add(new Tail(450, 350 + i, 100, 100));
 			}
+			for(int i = 0; i < 100; i+=25) {
+				ObjectManager.tailUpArrayList.add(new TailUp(450, 350 - i, 100, 100));
+
+			}
+			//for loop add ups
 			kill = 0;
 		}
 	}
