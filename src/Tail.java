@@ -8,21 +8,9 @@ public class Tail extends GameObject {
 
 	}
 
-	
-
-	void update(double prevX,  double prevY, double nextX, double nextY) {
-		/*if(ObjectManager.tailA<400) {
-		tailGlobY = 800-(800-prevY-(800-prevY)/(400-ObjectManager.tailA));
-		sampleX = 500 +prevX-500+ (prevX-500)/(400-ObjectManager.tailA);
-		} else {
-			tailGlobY = 800;
-			sampleX = 500;
-		}*/
-		y = (prevY + nextY)/2;
-		x = (prevX + nextX)/2;
-
-		
-		
+	void update(double prevX, double prevY, double nextX, double nextY) {
+		y = (prevY + nextY) / 2;
+		x = (prevX + nextX) / 2;
 	}
 
 	void draw(Graphics graphic) {

@@ -2,8 +2,10 @@ import java.awt.Graphics;
 import java.awt.Color;
 
 public class BigGlob extends GameObject {
+	
 	BigGlob(int x, int y, int width, int height) {
 		super(x, y, width, height);
+		
 	}
 
 	static double globY;
@@ -17,8 +19,8 @@ public class BigGlob extends GameObject {
 	}
 
 	void draw(Graphics graphic) {
-		graphic.setColor(Color.BLUE);
-		graphic.fillOval(GamePanel.mouseX-50, GamePanel.mouseY-50, width, height);
-		
+		graphic.setColor(Color.WHITE);
+		graphic.fillOval(GamePanel.mouseX - 50, GamePanel.mouseY - 50, width, height);
+
 	}
 }

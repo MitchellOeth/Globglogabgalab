@@ -27,13 +27,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	void startGame() {
 		framerate.start();
-		for (double i = 0; i < 500; i+=25) {
+		for (double i = 0; i < 500; i += 25) {
 			ObjectManager.tailDownArrayList.add(new Tail(450, 350 + i, 100, 100));
 		}
-		for (double i = 0; i < 100; i+=25) {
+		for (double i = 0; i < 100; i += 25) {
 			ObjectManager.tailUpArrayList.add(new TailUp(450, 350 - i, 100, 100));
 		}
-		//For loop add tail up's
+		// For loop add tail up's
 	}
 
 	public void paintComponent(Graphics graphic) {
@@ -62,15 +62,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if (event.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
 
-			}
-			if (currentState > END_STATE) {
-				currentState = MENU_STATE;
-			}
 		}
+		if (currentState > END_STATE) {
+			currentState = MENU_STATE;
+		}
+	}
 
 	public void keyReleased(KeyEvent event) {
-
-
 
 	}
 
@@ -84,10 +82,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	void updateGameState() {
-
-
 		objectManager.update();
-		objectManager.manageEnemies();
 	}
 
 	void updateEndState() {
@@ -124,14 +119,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if (currentState == END_STATE) {
 			you = new BigGlob(450, 350, 100, 100);
 			objectManager = new ObjectManager(you);
-			for (int i = 0; i < 500; i+=25) {
+			for (int i = 0; i < 500; i += 25) {
 				ObjectManager.tailDownArrayList.add(new Tail(450, 350 + i, 100, 100));
 			}
-			for(int i = 0; i < 100; i+=25) {
+			for (int i = 0; i < 100; i += 25) {
 				ObjectManager.tailUpArrayList.add(new TailUp(450, 350 - i, 100, 100));
 
 			}
-			//for loop add ups
+			// for loop add ups
 			kill = 0;
 		}
 	}
@@ -140,17 +135,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	}
 
-	@Override
 	public void mouseDragged(MouseEvent e) {
 
 	}
 
-	@Override
 	public void mouseMoved(MouseEvent e) {
 		mouseX = e.getX();
 		mouseY = e.getY();
-		// System.out.println("x "+ mouseX);
-		// System.out.println("y "+ BigGlob.y);
 	}
 
 }
