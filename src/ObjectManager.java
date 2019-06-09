@@ -2,7 +2,9 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class ObjectManager {
-	int f;
+	int upX;
+	int upY;
+	int modulo;
 	BigGlob glob;
 	public static int tailDown = 0;
 	public static int tailUp = 0;
@@ -19,23 +21,27 @@ public class ObjectManager {
 	
 	void update() {
 		GamePanel.you.update();
-		//tail.get(0).update(GamePanel.mouseX, (int) BigGlob.globY, GamePanel.mouseX, (int) BigGlob.globY);
-		tailDownArrayList.get(0).update(GamePanel.mouseX-50, GamePanel.mouseY-50, GamePanel.mouseX-50, GamePanel.mouseY-50);
-		tailUpArrayList.get(0).update(GamePanel.mouseX-50, GamePanel.mouseY-50, GamePanel.mouseX-50, GamePanel.mouseY-50);
 		
-
+		tailDownArrayList.get(0).update(GamePanel.mouseX-50, GamePanel.mouseY-50, GamePanel.mouseX-50, GamePanel.mouseY-50);
+		tailUpArrayList.get(0).update(GamePanel.mouseX-50, GamePanel.mouseY-50, GamePanel.mouseX-50, GamePanel.mouseY-50,.5);
+		
 		for (tailDown = 1;  tailDown < tailDownArrayList.size()-1; tailDown++) {
 			tailDownArrayList.get(tailDown).update(tailDownArrayList.get(tailDown-1).x,tailDownArrayList.get(tailDown-1).y,tailDownArrayList.get(tailDown+1).x,tailDownArrayList.get(tailDown+1).y);
 		}
 		for (tailUp = 1;  tailUp < tailUpArrayList.size()-1; tailUp++) {
-			tailUpArrayList.get(tailUp).update(tailUpArrayList.get(tailUp-1).x,tailUpArrayList.get(tailUp-1).y,tailUpArrayList.get(tailUp+1).x,tailUpArrayList.get(tailUp+1).y);
+			tailUpArrayList.get(tailUp).update(tailUpArrayList.get(tailUp-1).x,tailUpArrayList.get(tailUp-1).y,tailUpArrayList.get(tailUp+1).x,tailUpArrayList.get(tailUp+1).y,.5);
 	}
-		
-		//tailUpArrayList.get(tailUpArrayList.size()-1).x = (GamePanel.mouseX-500)*1.25+450;
-		
-	//	tailUpArrayList.get(tailUpArrayList.size()-1).y = tailDownArrayList.get(tailUpArrayList.size()-1).y-200;
+		int mx = GamePanel.mouseX - 50;
+		int my = GamePanel.mouseY - 50;
+		double tx = tailDownArrayList.get(3).x;
+		double ty = tailDownArrayList.get(3).y;
+		tailUpArrayList.get(tailUpArrayList.size()-1).update(1,1,1,1,1);
+		if(modulo%2==0) {
+		tailUpArrayList.get(tailUpArrayList.size()-1).x = ((mx+(mx-tx))+tailUpArrayList.get(tailUpArrayList.size()-1).lastX)/2;
+		tailUpArrayList.get(tailUpArrayList.size()-1).y = ((my+(my-ty))+tailUpArrayList.get(tailUpArrayList.size()-1).lastY)/2;
+		}
+		modulo++;
 
-		//update(tailDownArrayList.get(tailUpArrayList.size()-1).x, GamePanel.mouseY-350-tailDownArrayList.get(tailUpArrayList.size()-1).y,tailDownArrayList.get(tailUpArrayList.size()-1).x, GamePanel.mouseY-350-tailDownArrayList.get(tailUpArrayList.size()-1).y);
 	glob.update();
 	manageEnemies();
 	purgeObjects();
