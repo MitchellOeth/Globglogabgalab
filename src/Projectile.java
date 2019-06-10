@@ -34,10 +34,11 @@ public class Projectile extends GameObject {
 	void draw(Graphics graphic) {
 		graphic.setColor(Color.WHITE);
 		graphic.fillRect((int) x, (int) y, width, height);
-		graphic.setColor(Color.BLACK);
+		/*graphic.setColor(Color.BLACK);
 		graphic.fillRect((int) x+5, (int) y+5, 5, 5);
 		graphic.fillRect((int) x+15, (int) y+5, 5, 5);
 		graphic.fillRect((int) x+5, (int) y+15, 15, 5);
+		*/
 	}
 
 }

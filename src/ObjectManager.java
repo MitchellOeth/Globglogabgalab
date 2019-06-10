@@ -50,7 +50,7 @@ public class ObjectManager {
 		tailUpArrayList.get(tailUpArrayList.size() - 1).y = lastY + diff[1] / 5;
 
 		glob.update();
-		// manageEnemies();
+		manageEnemies();
 		purgeObjects();
 		checkCollision();
 
@@ -68,15 +68,15 @@ public class ObjectManager {
 	}
 
 	void draw(Graphics graphic) {
-GamePanel.you.draw(graphic);
-		
+
+		glob.draw();
 		for (int i = 0; i < tailDownArrayList.size(); i++) {
 			tailDownArrayList.get(i).draw(graphic);
 		}
-		for (int i = 0; i < tailUpArrayList.size() - 1; i++) {
+		for (int i = 0; i < tailUpArrayList.size()-1; i++) {
 			tailUpArrayList.get(i).draw(graphic);
 		}
-		glob.draw();
+		GamePanel.you.draw(graphic);
 		//for (Projectile projectile : projectile) {
 		//	projectile.draw(graphic);
 	//	}
@@ -89,6 +89,10 @@ GamePanel.you.draw(graphic);
 	 * 0)); } frameCounter++; }
 	 */
 
+	public void manageEnemies() {	
+		projectile.add(new Projectile(Projectile.Randy.nextInt(1000),-40,25,25,0));	
+	}
+	
 	void purgeObjects() {
 
 	}

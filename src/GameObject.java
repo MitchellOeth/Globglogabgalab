@@ -1,8 +1,8 @@
 import java.awt.Point;
 
 public class GameObject {
-	static double x;
-	static double y;
+	double x;
+	double y;
 	int width;
 	int height;
 
