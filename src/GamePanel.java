@@ -33,7 +33,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		for (double i = 0; i < 100; i += 25) {
 			ObjectManager.tailUpArrayList.add(new TailUp(450, 350 - i, 100, 100));
 		}
-		// For loop add tail up's
 	}
 
 	public void paintComponent(Graphics graphic) {

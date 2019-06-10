@@ -11,6 +11,7 @@ public class Tail extends GameObject {
 	void update(double prevX, double prevY, double nextX, double nextY) {
 		y = (prevY + nextY) / 2;
 		x = (prevX + nextX) / 2;
+		
 	}
 
 	void draw(Graphics graphic) {

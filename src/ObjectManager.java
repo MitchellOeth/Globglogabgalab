@@ -51,12 +51,13 @@ public class ObjectManager {
 
 		glob.update();
 		manageEnemies();
+		for (Projectile projectile : projectile) {
+		 projectile.update();
+		 }
 		purgeObjects();
 		checkCollision();
 
-		// for (Projectile projectile : projectile) {
-		// projectile.update();
-		// }
+		 
 	}
 
 	double[] difference(double targetX, double lastX, double targetY, double lastY) {
@@ -77,25 +78,41 @@ public class ObjectManager {
 			tailUpArrayList.get(i).draw(graphic);
 		}
 		GamePanel.you.draw(graphic);
-		//for (Projectile projectile : projectile) {
-		//	projectile.draw(graphic);
-	//	}
+		for (Projectile projectile : projectile) {
+			projectile.draw(graphic);
+		}
 
 	}
 
-	/*
-	 * public void manageEnemies() { if (frameCounter % 10 == 0) {
-	 * projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25,
-	 * 0)); } frameCounter++; }
-	 */
+	 public void manageEnemies() { if (frameCounter % 10 == 0) {
 
-	public void manageEnemies() {	
-		projectile.add(new Projectile(Projectile.Randy.nextInt(1000),-40,25,25,0));	
-	}
-	
+	  projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25,0));  
+
+	 }
+	frameCounter++; }
+	 
 	void purgeObjects() {
-
-	}
+		/*for (int i = 0; i < ObjectManager.projectile.size() - 1; i++) {
+			if (Projectile.isInsideCircle((int) ObjectManager.projectile.get(i).x,
+					(int) ObjectManager.projectile.get(i).y) == true) {
+				ObjectManager.projectile.remove(ObjectManager.projectile.get((int) i));
+			}
+		}*/
+		for (int i = 0; i < projectile.size() - 1; i++) {
+			for (int o = 0; o < tailDownArrayList.size() - 1; o++) {
+				if(tailDownArrayList.get(o).isInsideCircle((int) projectile.get(i).x, (int) projectile.get(i).y)==false) {	
+				projectile.remove(projectile.get(i));
+				}
+			}
+		}
+		for (int i = 0; i < projectile.size() - 1; i++) {
+			for (int o = 0; o < tailUpArrayList.size() - 1; o++) {
+				if(tailUpArrayList.get(o).isInsideCircle((int) projectile.get(i).x, (int) projectile.get(i).y)==false) {	
+					projectile.remove(projectile.get(i));
+					}			}
+		}
+		
+}
 
 	void checkCollision() {
 
