@@ -51,13 +51,27 @@ public class ObjectManager {
 
 		glob.update();
 		manageEnemies();
-		for (Projectile projectile : projectile) {
-		 projectile.update();
-		 }
+		if (projectile.size() > 0) {
+			for (int i = 0; i < projectile.size(); i++) {
+				projectile.get(i).update();
+				if (projectile.get(i).y > 600) {
+					if (projectile.get(i).type == 0) {
+						GamePanel.winCounter++;
+					}
+					projectile.remove(projectile.get(i));
+				}
+			}
+		}
+		go();
 		purgeObjects();
-		checkCollision();
-
-		 
+		if (GamePanel.lives == 0) {
+			GamePanel.currentState++;
+			GamePanel.lives = 3;
+		}
+		if (GamePanel.winCounter == 0) {
+			GamePanel.currentState++;
+			GamePanel.winCounter = 100;
+		}
 	}
 
 	double[] difference(double targetX, double lastX, double targetY, double lastY) {
@@ -65,7 +79,6 @@ public class ObjectManager {
 		diff[0] = targetX - lastX;
 		diff[1] = targetY - lastY;
 		return diff;
-
 	}
 
 	void draw(Graphics graphic) {
@@ -74,45 +87,80 @@ public class ObjectManager {
 		for (int i = 0; i < tailDownArrayList.size(); i++) {
 			tailDownArrayList.get(i).draw(graphic);
 		}
-		for (int i = 0; i < tailUpArrayList.size()-1; i++) {
+		for (int i = 0; i < tailUpArrayList.size() - 1; i++) {
 			tailUpArrayList.get(i).draw(graphic);
 		}
 		GamePanel.you.draw(graphic);
 		for (Projectile projectile : projectile) {
 			projectile.draw(graphic);
 		}
-
 	}
 
-	 public void manageEnemies() { if (frameCounter % 10 == 0) {
+	public void manageEnemies() {
+		if (frameCounter % 10 == 0) {
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25, 0));
+		}
+		if (frameCounter % 95 == 0) {
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25, 1));
+		}
+		if (frameCounter % 600 == 0) {
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25, 2));
+		}
+		frameCounter++;
+	}
 
-	  projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25,0));  
-
-	 }
-	frameCounter++; }
-	 
 	void purgeObjects() {
-		/*for (int i = 0; i < ObjectManager.projectile.size() - 1; i++) {
-			if (Projectile.isInsideCircle((int) ObjectManager.projectile.get(i).x,
-					(int) ObjectManager.projectile.get(i).y) == true) {
-				ObjectManager.projectile.remove(ObjectManager.projectile.get((int) i));
+		if (projectile.size() > 0) {
+			for (int o = 0; o < tailDownArrayList.size(); o++) {
+				for (int i = 0; i < projectile.size(); i++) {
+					if (tailDownArrayList.get(o).isInsideCircle((int) projectile.get(i).x,
+							(int) projectile.get(i).y) == false) {
+						if (projectile.get(i).type == 0) {
+							GamePanel.winCounter--;
+						} else if (projectile.get(i).type == 1) {
+							if (GamePanel.isInvincible == 0) {
+								GamePanel.lives--;
+							}
+						} else if (projectile.get(i).type == 2) {
+							GamePanel.isInvincible = 1;
+
+						}
+
+						projectile.remove(projectile.get(i));
+
+					}
+				}
 			}
-		}*/
-		for (int i = 0; i < projectile.size() - 1; i++) {
-			for (int o = 0; o < tailDownArrayList.size() - 1; o++) {
-				if(tailDownArrayList.get(o).isInsideCircle((int) projectile.get(i).x, (int) projectile.get(i).y)==false) {	
-				projectile.remove(projectile.get(i));
+
+			for (int o = 0; o < tailUpArrayList.size(); o++) {
+				for (int i = 0; i < projectile.size(); i++) {
+					if (tailUpArrayList.get(o).isInsideCircle((int) projectile.get(i).x,
+							(int) projectile.get(i).y) == false) {
+						if (projectile.get(i).type == 0) {
+							GamePanel.winCounter--;
+						} else if (projectile.get(i).type == 1) {
+							if (GamePanel.isInvincible == 0) {
+								GamePanel.lives--;
+							}
+						} else if (projectile.get(i).type == 2) {
+							GamePanel.isInvincible = 1;
+
+						}
+						projectile.remove(projectile.get(i));
+
+					}
 				}
 			}
 		}
-		for (int i = 0; i < projectile.size() - 1; i++) {
-			for (int o = 0; o < tailUpArrayList.size() - 1; o++) {
-				if(tailUpArrayList.get(o).isInsideCircle((int) projectile.get(i).x, (int) projectile.get(i).y)==false) {	
-					projectile.remove(projectile.get(i));
-					}			}
+	}
+
+	public void go() {
+		if ((GamePanel.isInvincible < 240) && (GamePanel.isInvincible > 0)) {
+			GamePanel.isInvincible++;
+		} else {
+			GamePanel.isInvincible = 0;
 		}
-		
-}
+	}
 
 	void checkCollision() {
 

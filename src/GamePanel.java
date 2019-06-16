@@ -18,6 +18,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font titleFont = new Font("Arial", Font.BOLD, 48);
 	Font normalFont = new Font("Arial", Font.PLAIN, 25);
 	Timer framerate;
+	public final static int MENU_STATE = 0;
+	public final static int GAME_STATE = 1;
+	public final static int END_STATE = 2;
+	public static int currentState = MENU_STATE;
+	public static int kill = 0;
+	public static int lives = 3;
+	public static int winCounter = 100;
+	public static int isInvincible;
+	public static int level = 1;
 
 	public GamePanel() {
 		framerate = new Timer(1000 / 60, this);
@@ -46,7 +55,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		// Done
 		repaint();
 		if (currentState == MENU_STATE) {
 			updateMenuState();
@@ -71,12 +79,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	}
 
-	public final static int MENU_STATE = 0;
-	public final static int GAME_STATE = 1;
-	public final static int END_STATE = 2;
-	public static int currentState = MENU_STATE;
-	public static int kill = 0;
-
 	void updateMenuState() {
 	}
 
@@ -85,11 +87,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	void updateEndState() {
-		// Nothing goes here
 	}
 
 	void drawMenuState(Graphics graphic) {
-		// DONE
 		graphic.setColor(Color.BLUE);
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
 		graphic.setFont(titleFont);
@@ -104,6 +104,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.setColor(Color.BLACK);
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
 		objectManager.draw(graphic);
+		graphic.setColor(Color.WHITE);
+		graphic.setFont(normalFont);
+		graphic.drawString("Lives: " + lives, 10, 30);
+		graphic.drawLine(0, winCounter * 4, 1100, winCounter * 4);
+		graphic.drawLine(0, 650, 1100, 650);
 	}
 
 	void drawEndState(Graphics graphic) {
@@ -125,7 +130,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				ObjectManager.tailUpArrayList.add(new TailUp(450, 350 - i, 100, 100));
 
 			}
-			// for loop add ups
 			kill = 0;
 		}
 	}

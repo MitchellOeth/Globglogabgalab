@@ -11,11 +11,14 @@ public class Tail extends GameObject {
 	void update(double prevX, double prevY, double nextX, double nextY) {
 		y = (prevY + nextY) / 2;
 		x = (prevX + nextX) / 2;
-		
+
 	}
 
 	void draw(Graphics graphic) {
 		graphic.setColor(Color.WHITE);
+		if (GamePanel.isInvincible > 0) {
+			graphic.setColor(Color.YELLOW);
+		}
 		graphic.fillOval((int) x, (int) y, width, height);
 	}
 }
