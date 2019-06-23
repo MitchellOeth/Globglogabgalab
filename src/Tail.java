@@ -15,10 +15,11 @@ public class Tail extends GameObject {
 	}
 
 	void draw(Graphics graphic) {
-		graphic.setColor(Color.WHITE);
+		graphic.setColor(null);
 		if (GamePanel.isInvincible > 0) {
 			graphic.setColor(Color.YELLOW);
 		}
-		graphic.fillOval((int) x, (int) y, width, height);
+		graphic.drawImage(GamePanel.globImg, (int) x, (int) y, width, height, null);
 	}
+	
 }

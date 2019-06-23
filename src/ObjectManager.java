@@ -20,7 +20,7 @@ public class ObjectManager {
 
 	void update() {
 		GamePanel.you.update();
-
+	glob.update();
 		tailDownArrayList.get(0).update(GamePanel.mouseX - 50, GamePanel.mouseY - 50, GamePanel.mouseX - 50,
 				GamePanel.mouseY - 50);
 		tailUpArrayList.get(0).update(GamePanel.mouseX - 50, GamePanel.mouseY - 50, GamePanel.mouseX - 50,
@@ -49,7 +49,7 @@ public class ObjectManager {
 		tailUpArrayList.get(tailUpArrayList.size() - 1).x = lastX + diff[0] / 5;
 		tailUpArrayList.get(tailUpArrayList.size() - 1).y = lastY + diff[1] / 5;
 
-		glob.update();
+	
 		manageEnemies();
 		if (projectile.size() > 0) {
 			for (int i = 0; i < projectile.size(); i++) {
@@ -82,7 +82,7 @@ public class ObjectManager {
 	}
 
 	void draw(Graphics graphic) {
-
+GamePanel.you.draw(graphic);
 		glob.draw();
 		for (int i = 0; i < tailDownArrayList.size(); i++) {
 			tailDownArrayList.get(i).draw(graphic);
@@ -90,7 +90,7 @@ public class ObjectManager {
 		for (int i = 0; i < tailUpArrayList.size() - 1; i++) {
 			tailUpArrayList.get(i).draw(graphic);
 		}
-		GamePanel.you.draw(graphic);
+		
 		for (Projectile projectile : projectile) {
 			projectile.draw(graphic);
 		}

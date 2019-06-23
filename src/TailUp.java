@@ -22,6 +22,5 @@ public class TailUp extends GameObject {
 		if (GamePanel.isInvincible > 0) {
 			graphic.setColor(Color.YELLOW);
 		}
-		graphic.fillOval((int) x, (int) y, width, height);
-	}
+		graphic.drawImage(GamePanel.glob1Img, (int) x, (int) y, width, height, null);	}
 }
