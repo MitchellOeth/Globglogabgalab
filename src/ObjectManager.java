@@ -31,10 +31,6 @@ public class ObjectManager {
 					tailDownArrayList.get(tailDown - 1).y, tailDownArrayList.get(tailDown + 1).x,
 					tailDownArrayList.get(tailDown + 1).y);
 		}
-		for (tailUp = 1; tailUp < tailUpArrayList.size() - 1; tailUp++) {
-			tailUpArrayList.get(tailUp).update(tailUpArrayList.get(tailUp - 1).x, tailUpArrayList.get(tailUp - 1).y,
-					tailUpArrayList.get(tailUp + 1).x, tailUpArrayList.get(tailUp + 1).y, .5);
-		}
 		int mx = GamePanel.mouseX - 50;
 		int my = GamePanel.mouseY - 50;
 		double tx = tailDownArrayList.get(3).x;
@@ -44,12 +40,16 @@ public class ObjectManager {
 		double lastX = tailUpArrayList.get(tailUpArrayList.size() - 1).lastX;
 		double lastY = tailUpArrayList.get(tailUpArrayList.size() - 1).lastY;
 		double[] diff = difference(targetX, lastX, targetY, lastY);
-
 		tailUpArrayList.get(tailUpArrayList.size() - 1).update(1, 1, 1, 1, 1);
 		tailUpArrayList.get(tailUpArrayList.size() - 1).x = lastX + diff[0] / 5;
 		tailUpArrayList.get(tailUpArrayList.size() - 1).y = lastY + diff[1] / 5;
-
+		
+		for (tailUp = tailUpArrayList.size()-2; tailUp > 0; tailUp--) {
+			tailUpArrayList.get(tailUp).update(tailUpArrayList.get(tailUp - 1).x, tailUpArrayList.get(tailUp - 1).y,
+					tailUpArrayList.get(tailUp + 1).x, tailUpArrayList.get(tailUp + 1).y, .5);
+		}
 	
+		
 		manageEnemies();
 		if (projectile.size() > 0) {
 			for (int i = 0; i < projectile.size(); i++) {
@@ -81,19 +81,19 @@ public class ObjectManager {
 		return diff;
 	}
 
-	void draw(Graphics graphic) {
-GamePanel.you.draw(graphic);
-		glob.draw();
+	void draw(Graphics graphic) {		
 		for (int i = 0; i < tailDownArrayList.size(); i++) {
 			tailDownArrayList.get(i).draw(graphic);
 		}
-		for (int i = 0; i < tailUpArrayList.size() - 1; i++) {
+		for (int i = tailUpArrayList.size()-1; i > 0; i--) {
 			tailUpArrayList.get(i).draw(graphic);
 		}
 		
 		for (Projectile projectile : projectile) {
 			projectile.draw(graphic);
 		}
+		GamePanel.you.draw(graphic);
+		glob.draw();
 	}
 
 	public void manageEnemies() {

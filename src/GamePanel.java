@@ -28,13 +28,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static int currentState = MENU_STATE;
 	public static int kill = 0;
 	public static int lives = 3;
-	public static int winCounter = 100;
+	public static int winCounter = 75;
 	public static int isInvincible;
 	public static int level = 1;
 public static BufferedImage globImg;
 public static BufferedImage glob0Img;
 public static BufferedImage glob1Img;
 public static BufferedImage glob2Img;
+public static BufferedImage foreheadImg;
 	public GamePanel() {
 		framerate = new Timer(1000 / 60, this);
 		addKeyListener(this);
@@ -43,6 +44,7 @@ public static BufferedImage glob2Img;
 		globImg = ImageIO.read(this.getClass().getResourceAsStream("glob.png"));
 		glob0Img = ImageIO.read(this.getClass().getResourceAsStream("glob0.png"));
 		glob1Img = ImageIO.read(this.getClass().getResourceAsStream("glob1.png"));
+		foreheadImg = ImageIO.read(this.getClass().getResourceAsStream("forehead.png"));
 		} catch (IOException e) {
             e.printStackTrace();
     }
@@ -120,9 +122,11 @@ public static BufferedImage glob2Img;
 		objectManager.draw(graphic);
 		graphic.setColor(Color.WHITE);
 		graphic.setFont(gameFont);
-		graphic.drawString("Lives: " + lives, 10, 30);
-		graphic.drawLine(0, winCounter * 4, 1100, winCounter * 4);
+		graphic.drawString("Lives: " + lives, 10, 60);
 		graphic.drawLine(0, 650, 1100, 650);
+		
+		graphic.drawLine(1065, winCounter * 4, 1090, winCounter * 4);
+		graphic.drawRect(1065, 100, 25, 400);
 	}
 
 	void drawEndState(Graphics graphic) {

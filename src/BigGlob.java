@@ -20,6 +20,6 @@ public class BigGlob extends GameObject {
 
 	void draw(Graphics graphic) {
 		graphic.setColor(Color.WHITE);
-		graphic.drawImage(GamePanel.glob0Img,GamePanel.mouseX - 100, GamePanel.mouseY - 50, 2*width, 2*height, null, null);
+		graphic.drawImage(GamePanel.glob1Img,GamePanel.mouseX - 50, GamePanel.mouseY - 50, width, height, null, null);
 	}
 }
