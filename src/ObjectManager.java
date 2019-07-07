@@ -5,9 +5,10 @@ public class ObjectManager {
 	int upX;
 	int upY;
 	BigGlob glob;
-	int frameCounter = 0;
+	public static int frameCounter = 0;
 	public static int tailDown = 0;
 	public static int tailUp = 0;
+	public static int bookCounter = 0;
 
 	static ArrayList<Tail> tailDownArrayList = new ArrayList<Tail>();
 	static ArrayList<TailUp> tailUpArrayList = new ArrayList<TailUp>();
@@ -64,11 +65,11 @@ public class ObjectManager {
 		}
 		go();
 		purgeObjects();
-		if (GamePanel.lives == 0) {
+		if (GamePanel.lives < 1) {
 			GamePanel.currentState++;
 			GamePanel.lives = 3;
 		}
-		if (GamePanel.winCounter == 0) {
+		if (GamePanel.winCounter < 0) {
 			GamePanel.currentState++;
 			GamePanel.winCounter = 100;
 		}
@@ -98,13 +99,17 @@ public class ObjectManager {
 
 	public void manageEnemies() {
 		if (frameCounter % 10 == 0) {
-			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25, 0));
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 50, 0, bookCounter));
+			bookCounter++;
+			if(bookCounter > 6) {
+				bookCounter = 0;
+			}
 		}
 		if (frameCounter % 95 == 0) {
-			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25, 1));
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 1, 0));
 		}
 		if (frameCounter % 600 == 0) {
-			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 25, 25, 2));
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 2, 0));
 		}
 		frameCounter++;
 	}

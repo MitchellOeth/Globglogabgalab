@@ -36,6 +36,15 @@ public static BufferedImage glob0Img;
 public static BufferedImage glob1Img;
 public static BufferedImage glob2Img;
 public static BufferedImage foreheadImg;
+public static BufferedImage blueBookImg;
+public static BufferedImage redBookImg;
+public static BufferedImage greenBookImg;
+public static BufferedImage yellowBookImg;
+public static BufferedImage purpleBookImg;
+public static BufferedImage orangeBookImg;
+public static BufferedImage greyBookImg;
+public static BufferedImage bombImg;
+public static BufferedImage invincibleStarImg;
 	public GamePanel() {
 		framerate = new Timer(1000 / 60, this);
 		addKeyListener(this);
@@ -45,6 +54,15 @@ public static BufferedImage foreheadImg;
 		glob0Img = ImageIO.read(this.getClass().getResourceAsStream("glob0.png"));
 		glob1Img = ImageIO.read(this.getClass().getResourceAsStream("glob1.png"));
 		foreheadImg = ImageIO.read(this.getClass().getResourceAsStream("forehead.png"));
+		blueBookImg = ImageIO.read(this.getClass().getResourceAsStream("BlueBook.png"));
+		redBookImg = ImageIO.read(this.getClass().getResourceAsStream("RedBook.png"));
+		greenBookImg = ImageIO.read(this.getClass().getResourceAsStream("GreenBook.png"));
+		yellowBookImg = ImageIO.read(this.getClass().getResourceAsStream("YellowBook.png"));
+		purpleBookImg = ImageIO.read(this.getClass().getResourceAsStream("PurpleBook.png"));
+		orangeBookImg = ImageIO.read(this.getClass().getResourceAsStream("OrangeBook.png"));
+		greyBookImg = ImageIO.read(this.getClass().getResourceAsStream("GreyBook.png"));
+		bombImg = ImageIO.read(this.getClass().getResourceAsStream("Bomb.png"));
+		invincibleStarImg = ImageIO.read(this.getClass().getResourceAsStream("InvincibleStar.png"));
 		} catch (IOException e) {
             e.printStackTrace();
     }
