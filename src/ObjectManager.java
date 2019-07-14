@@ -5,6 +5,7 @@ public class ObjectManager {
 	int upX;
 	int upY;
 	BigGlob glob;
+	static boolean win;
 	public static int frameCounter = 0;
 	public static int tailDown = 0;
 	public static int tailUp = 0;
@@ -21,7 +22,7 @@ public class ObjectManager {
 
 	void update() {
 		GamePanel.you.update();
-	glob.update();
+		glob.update();
 		tailDownArrayList.get(0).update(GamePanel.mouseX - 50, GamePanel.mouseY - 50, GamePanel.mouseX - 50,
 				GamePanel.mouseY - 50);
 		tailUpArrayList.get(0).update(GamePanel.mouseX - 50, GamePanel.mouseY - 50, GamePanel.mouseX - 50,
@@ -44,13 +45,12 @@ public class ObjectManager {
 		tailUpArrayList.get(tailUpArrayList.size() - 1).update(1, 1, 1, 1, 1);
 		tailUpArrayList.get(tailUpArrayList.size() - 1).x = lastX + diff[0] / 5;
 		tailUpArrayList.get(tailUpArrayList.size() - 1).y = lastY + diff[1] / 5;
-		
-		for (tailUp = tailUpArrayList.size()-2; tailUp > 0; tailUp--) {
+
+		for (tailUp = tailUpArrayList.size() - 2; tailUp > 0; tailUp--) {
 			tailUpArrayList.get(tailUp).update(tailUpArrayList.get(tailUp - 1).x, tailUpArrayList.get(tailUp - 1).y,
 					tailUpArrayList.get(tailUp + 1).x, tailUpArrayList.get(tailUp + 1).y, .5);
 		}
-	
-		
+
 		manageEnemies();
 		if (projectile.size() > 0) {
 			for (int i = 0; i < projectile.size(); i++) {
@@ -69,9 +69,15 @@ public class ObjectManager {
 			GamePanel.currentState++;
 			GamePanel.lives = 3;
 		}
-		if (GamePanel.winCounter < 0) {
+		if (GamePanel.winCounter >= 125) {
 			GamePanel.currentState++;
-			GamePanel.winCounter = 100;
+			GamePanel.winCounter = 75;
+			win = false;
+		}
+		if (GamePanel.winCounter <=25) {
+			GamePanel.currentState++;
+			GamePanel.winCounter = 75;
+			win = true;
 		}
 	}
 
@@ -82,14 +88,14 @@ public class ObjectManager {
 		return diff;
 	}
 
-	void draw(Graphics graphic) {		
+	void draw(Graphics graphic) {
 		for (int i = 0; i < tailDownArrayList.size(); i++) {
 			tailDownArrayList.get(i).draw(graphic);
 		}
-		for (int i = tailUpArrayList.size()-1; i > 0; i--) {
+		for (int i = tailUpArrayList.size() - 1; i > 0; i--) {
 			tailUpArrayList.get(i).draw(graphic);
 		}
-		
+
 		for (Projectile projectile : projectile) {
 			projectile.draw(graphic);
 		}
@@ -101,7 +107,7 @@ public class ObjectManager {
 		if (frameCounter % 10 == 0) {
 			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 50, 0, bookCounter));
 			bookCounter++;
-			if(bookCounter > 6) {
+			if (bookCounter > 6) {
 				bookCounter = 0;
 			}
 		}
@@ -115,6 +121,7 @@ public class ObjectManager {
 	}
 
 	void purgeObjects() {
+		
 		if (projectile.size() > 0) {
 			for (int o = 0; o < tailDownArrayList.size(); o++) {
 				for (int i = 0; i < projectile.size(); i++) {
@@ -122,17 +129,16 @@ public class ObjectManager {
 							(int) projectile.get(i).y) == false) {
 						if (projectile.get(i).type == 0) {
 							GamePanel.winCounter--;
+							GamePanel.kill++;
 						} else if (projectile.get(i).type == 1) {
 							if (GamePanel.isInvincible == 0) {
 								GamePanel.lives--;
+								
 							}
 						} else if (projectile.get(i).type == 2) {
 							GamePanel.isInvincible = 1;
-
 						}
-
 						projectile.remove(projectile.get(i));
-
 					}
 				}
 			}
@@ -143,6 +149,7 @@ public class ObjectManager {
 							(int) projectile.get(i).y) == false) {
 						if (projectile.get(i).type == 0) {
 							GamePanel.winCounter--;
+							GamePanel.kill++;
 						} else if (projectile.get(i).type == 1) {
 							if (GamePanel.isInvincible == 0) {
 								GamePanel.lives--;

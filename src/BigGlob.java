@@ -20,6 +20,12 @@ public class BigGlob extends GameObject {
 
 	void draw(Graphics graphic) {
 		graphic.setColor(Color.WHITE);
-		graphic.drawImage(GamePanel.glob1Img,GamePanel.mouseX - 50, GamePanel.mouseY - 50, width, height, null, null);
+		if (GamePanel.isInvincible >= 1) {
+			graphic.drawImage(GamePanel.glob1InvincibilityImg, GamePanel.mouseX - 50, GamePanel.mouseY - 50, width,
+					height, null, null);
+		} else {
+			graphic.drawImage(GamePanel.glob1Img, GamePanel.mouseX - 50, GamePanel.mouseY - 50, width, height, null,
+					null);
+		}
 	}
 }
