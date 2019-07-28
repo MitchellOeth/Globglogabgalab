@@ -28,7 +28,6 @@ public class Projectile extends GameObject {
 		if (x < 0 || x > 1090) {
 			xSpeed *= -1;
 		}
-
 	}
 
 	void draw(Graphics graphic) {
@@ -51,11 +50,11 @@ public class Projectile extends GameObject {
 			} else if (bookType == 6) {
 				graphic.drawImage(GamePanel.greyBookImg, (int) x, (int) y, width, height, null);
 			}
-		} else if (type == 1) {
+		}  if (type == 1) {
 			graphic.drawImage(GamePanel.bombImg, (int) x, (int) y, width, height, null);
-		} else if (type == 2) {
+		}  if (type == 2) {
 			graphic.drawImage(GamePanel.invincibleStarImg, (int) x, (int) y, width, height, null);
-		}
+		} 
 	}
-
 }
+

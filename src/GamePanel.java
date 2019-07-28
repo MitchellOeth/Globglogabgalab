@@ -90,7 +90,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			yellowBookshelfImg = ImageIO.read(this.getClass().getResourceAsStream("yellowBookshelf.png"));
 			bookshelfImg = ImageIO.read(this.getClass().getResourceAsStream("bookShelf.png"));
 			bookshelf1Img= ImageIO.read(this.getClass().getResourceAsStream("bookShelf1.png"));
-			bookshelf2Img= ImageIO.read(this.getClass().getResourceAsStream("bookShelf2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -164,6 +163,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	void drawGameState(Graphics graphic) {
+		
 		graphic.setColor(Color.BLACK);
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
 		objectManager.draw(graphic);
@@ -188,14 +188,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			graphic.drawString("2", 475, 400);
 			}
 		if (isInvincible >=180 && isInvincible<=210
-				
 				) {
 				graphic.drawString("1", 475, 400);
 			}
-		graphic.drawImage(bookshelfImg, -7, 650, 1100, 150, null);
-		//graphic.drawImage(bookshelf1Img, 183, 650, 000, 150, null);
-		//graphic.drawImage(bookshelf2Img, 183, 650, 190, 150, null);
-
 	}
 
 	void drawEndState(Graphics graphic) {
