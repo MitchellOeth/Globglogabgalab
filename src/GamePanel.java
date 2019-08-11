@@ -47,8 +47,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static BufferedImage purpleBookImg;
 	public static BufferedImage orangeBookImg;
 	public static BufferedImage greyBookImg;
-	public static BufferedImage bombImg;
-	public static BufferedImage invincibleStarImg;
+	public static BufferedImage bookmarkImg;
+	public static BufferedImage glassesImg;
 	public static BufferedImage blueBookshelfImg;
 	public static BufferedImage greenBookshelfImg;
 	public static BufferedImage greyBookshelfImg;
@@ -59,6 +59,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static BufferedImage bookshelfImg;
 	public static BufferedImage bookshelf1Img;
 	public static BufferedImage bookshelf2Img;
+	
 
 	public GamePanel() {
 		framerate = new Timer(1000 / 60, this);
@@ -76,8 +77,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			purpleBookImg = ImageIO.read(this.getClass().getResourceAsStream("PurpleBook.png"));
 			orangeBookImg = ImageIO.read(this.getClass().getResourceAsStream("OrangeBook.png"));
 			greyBookImg = ImageIO.read(this.getClass().getResourceAsStream("GreyBook.png"));
-			bombImg = ImageIO.read(this.getClass().getResourceAsStream("Bomb.png"));
-			invincibleStarImg = ImageIO.read(this.getClass().getResourceAsStream("InvincibleStar.png"));
+			bookmarkImg = ImageIO.read(this.getClass().getResourceAsStream("Bookmark.png"));
+			glassesImg = ImageIO.read(this.getClass().getResourceAsStream("glasses.png"));
 			globInvincibilityImg = ImageIO.read(this.getClass().getResourceAsStream("globInvincibility.png"));
 			glob1InvincibilityImg = ImageIO.read(this.getClass().getResourceAsStream("glob1Invincibility.png"));
 			foreheadInvincibleImg = ImageIO.read(this.getClass().getResourceAsStream("foreheadInvincible.png"));
@@ -90,6 +91,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			yellowBookshelfImg = ImageIO.read(this.getClass().getResourceAsStream("yellowBookshelf.png"));
 			bookshelfImg = ImageIO.read(this.getClass().getResourceAsStream("bookShelf.png"));
 			bookshelf1Img= ImageIO.read(this.getClass().getResourceAsStream("bookShelf1.png"));
+			bookshelf2Img= ImageIO.read(this.getClass().getResourceAsStream("bookShelf2.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

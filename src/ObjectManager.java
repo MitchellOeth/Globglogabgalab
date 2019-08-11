@@ -103,6 +103,7 @@ public class ObjectManager {
 	}
 
 	void draw(Graphics graphic) {
+		graphic.drawImage(GamePanel.bookshelf2Img, 0, 0, 1100, 800, null);
 		for (int i = 0; i < tailDownArrayList.size(); i++) {
 			tailDownArrayList.get(i).draw(graphic);
 		}

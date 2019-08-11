@@ -30,6 +30,7 @@ public class Projectile extends GameObject {
 		}
 	}
 
+	
 	void draw(Graphics graphic) {
 		// 0=Book
 		// 1=Bomb
@@ -51,9 +52,9 @@ public class Projectile extends GameObject {
 				graphic.drawImage(GamePanel.greyBookImg, (int) x, (int) y, width, height, null);
 			}
 		}  if (type == 1) {
-			graphic.drawImage(GamePanel.bombImg, (int) x, (int) y, width, height, null);
+			graphic.drawImage(GamePanel.bookmarkImg, (int) x, (int) y, width/2, height, null);
 		}  if (type == 2) {
-			graphic.drawImage(GamePanel.invincibleStarImg, (int) x, (int) y, width, height, null);
+			graphic.drawImage(GamePanel.glassesImg, (int) x, (int) y, width*2, height, null);
 		} 
 	}
 }
