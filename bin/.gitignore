@@ -3,6 +3,7 @@
 /BlueBook.png
 /Bomb.png
 /BookInShelf.class
+/Bookmark.png
 /GameObject.class
 /GamePanel.class
 /Globglogabgalab.class
@@ -20,8 +21,10 @@
 /blueBookshelf.png
 /bookShelf.png
 /bookShelf1.png
+/bookShelf2.png
 /forehead.png
 /foreheadInvincible.png
+/glasses.png
 /glob.png
 /glob0.png
 /glob1.png
@@ -29,11 +32,8 @@
 /globInvincibility.png
 /greenBookshelf.png
 /greyBookshelf.png
+/openBook.png
 /orangeBookshelf.png
 /purpleBookshelf.png
 /redBookshelf.png
 /yellowBookshelf.png
-/Bookmark.png
-/openBook.png
-/glasses.png
-/bookShelf2.png

@@ -14,6 +14,7 @@ public class ObjectManager {
 	static ArrayList<TailUp> tailUpArrayList = new ArrayList<TailUp>();
 	static ArrayList<Projectile> projectile = new ArrayList<Projectile>();
 	static ArrayList<BookInShelf> bookInShelf = new ArrayList<BookInShelf>();
+
 	ObjectManager(BigGlob glob) {
 		this.glob = glob;
 		glob = new BigGlob(450, 350, 100, 100);
@@ -56,23 +57,24 @@ public class ObjectManager {
 				projectile.get(i).update();
 				if (projectile.get(i).y > 600) {
 					if (projectile.get(i).type == 0) {
-						GamePanel.winCounter+=3;
-						bookInShelf.add(new BookInShelf(8*BookInShelf.numBooksInShelf + 12, BookInShelf.numRow*47 + 661, 8, 34, projectile.get(i).bookType));
-						BookInShelf.numBooksInShelf+=1;
-						if(BookInShelf.numBooksInShelf>=135) {
-							BookInShelf.numRow=1;
-							BookInShelf.numBooksInShelf=0;
+						GamePanel.winCounter += 3;
+						bookInShelf.add(new BookInShelf(8 * BookInShelf.numBooksInShelf + 12,
+								BookInShelf.numRow * 47 + 661, 8, 34, projectile.get(i).bookType));
+						BookInShelf.numBooksInShelf += 1;
+						if (BookInShelf.numBooksInShelf >= 135) {
+							BookInShelf.numRow = 1;
+							BookInShelf.numBooksInShelf = 0;
 						}
-						if(BookInShelf.numBooksInShelf>=270) {
-							BookInShelf.numRow=2;
-							BookInShelf.numBooksInShelf=0;
+						if (BookInShelf.numBooksInShelf >= 270) {
+							BookInShelf.numRow = 2;
+							BookInShelf.numBooksInShelf = 0;
 						}
 					}
 					projectile.remove(projectile.get(i));
 				}
 			}
 		}
-		if (bookInShelf.size()>0) {
+		if (bookInShelf.size() > 0) {
 			for (int i = 0; i < bookInShelf.size(); i++) {
 				bookInShelf.get(i).update();
 			}
@@ -88,7 +90,7 @@ public class ObjectManager {
 			GamePanel.winCounter = 75;
 			win = false;
 		}
-		if (GamePanel.winCounter <=25) {
+		if (GamePanel.winCounter <= 25) {
 			GamePanel.currentState++;
 			GamePanel.winCounter = 75;
 			win = true;
@@ -103,7 +105,7 @@ public class ObjectManager {
 	}
 
 	void draw(Graphics graphic) {
-		graphic.drawImage(GamePanel.bookshelf2Img, 0, 0, 1100, 800, null);
+		
 		for (int i = 0; i < tailDownArrayList.size(); i++) {
 			tailDownArrayList.get(i).draw(graphic);
 		}
@@ -117,7 +119,7 @@ public class ObjectManager {
 		graphic.drawImage(GamePanel.bookshelfImg, 0, 650, 156, 150, null);
 		graphic.drawImage(GamePanel.bookshelfImg, 944, 650, 156, 150, null);
 		graphic.drawImage(GamePanel.bookshelf1Img, 20, 650, 1000, 150, null);
-		for ( BookInShelf bookInShelf : bookInShelf) {
+		for (BookInShelf bookInShelf : bookInShelf) {
 			bookInShelf.draw(graphic);
 		}
 		GamePanel.you.draw(graphic);
@@ -142,7 +144,7 @@ public class ObjectManager {
 	}
 
 	void purgeObjects() {
-		
+
 		if (projectile.size() > 0) {
 			for (int o = 0; o < tailDownArrayList.size(); o++) {
 				for (int i = 0; i < projectile.size(); i++) {
@@ -154,7 +156,7 @@ public class ObjectManager {
 						} else if (projectile.get(i).type == 1) {
 							if (GamePanel.isInvincible == 0) {
 								GamePanel.lives--;
-								
+
 							}
 						} else if (projectile.get(i).type == 2) {
 							GamePanel.isInvincible = 1;

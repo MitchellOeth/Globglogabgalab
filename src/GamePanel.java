@@ -23,6 +23,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Font gameFont = new Font("Arial", Font.BOLD, 75);
 	Font invincibleFont = new Font("Arial", Font.BOLD, 150);
 	Timer framerate;
+	boolean epilepsy = false;
+	int epilepsyCounter = 0;
 	public final static int MENU_STATE = 0;
 	public final static int GAME_STATE = 1;
 	public final static int END_STATE = 2;
@@ -133,6 +135,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			currentState++;
 
 		}
+		if (event.getKeyCode() == KeyEvent.VK_Z) {
+			epilepsy = true;
+		}
+		if (event.getKeyCode() == KeyEvent.VK_X) {
+			epilepsy = false;
+		}
 		if (currentState > END_STATE) {
 			currentState = MENU_STATE;
 		}
@@ -162,12 +170,47 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.drawString("Press ENTER to start", 375, 400);
 		graphic.drawString("Press SPACE for instructions", 325, 600);
 		kill = 0;
+		lives = 3;
+		isInvincible = 0;
+		BookInShelf.numRow = 0;
+		BookInShelf.numBooksInShelf = 0;
 	}
 
+	
 	void drawGameState(Graphics graphic) {
+		if (epilepsy == true) {
+			if(epilepsyCounter==1) {
+				graphic.setColor(Color.RED);
+				graphic.fillRect(0,0,Globglogabgalab.width, Globglogabgalab.height);
+		}
+			if(epilepsyCounter==2) {
+				graphic.setColor(Color.BLUE);
+				graphic.fillRect(0,0,Globglogabgalab.width, Globglogabgalab.height);
+		}
+			if(epilepsyCounter==3) {
+				graphic.setColor(Color.ORANGE);
+				graphic.fillRect(0,0,Globglogabgalab.width, Globglogabgalab.height);
+		}
+			if(epilepsyCounter==4) {
+				graphic.setColor(Color.BLACK);
+				graphic.fillRect(0,0,Globglogabgalab.width, Globglogabgalab.height);
+		}
+			if(epilepsyCounter==5) {
+				graphic.setColor(Color.GREEN);
+				graphic.fillRect(0,0,Globglogabgalab.width, Globglogabgalab.height);
+		}
+			if(epilepsyCounter==6) {
+				graphic.setColor(Color.YELLOW);
+				graphic.fillRect(0,0,Globglogabgalab.width, Globglogabgalab.height);
+		}
+		}
 		
-		graphic.setColor(Color.BLACK);
-		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
+			else {
+			graphic.setColor(Color.BLACK);
+			graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
+			graphic.drawImage(bookshelf2Img, 0, 0, 1100, 800, null);
+		}
+		
 		objectManager.draw(graphic);
 		graphic.setColor(Color.WHITE);
 		graphic.setFont(gameFont);
@@ -193,6 +236,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 				) {
 				graphic.drawString("1", 475, 400);
 			}
+		epilepsyCounter +=1;
+		if (epilepsyCounter >=7
+				) {
+			epilepsyCounter = 1;
+		}
 	}
 
 	void drawEndState(Graphics graphic) {
@@ -220,14 +268,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		if (currentState == END_STATE) {
 			you = new BigGlob(450, 350, 100, 100);
 			objectManager = new ObjectManager(you);
-			for (int i = 0; i < 500; i += 25) {
-				ObjectManager.tailDownArrayList.add(new Tail(450, 350 + i, 100, 100));
+			winCounter=75;
+			for (int i = 0; i < ObjectManager.projectile.size()-1; i++) {
+				ObjectManager.projectile.remove(ObjectManager.projectile.get(i));
 			}
-			for (int i = 0; i < 100; i += 25) {
-				ObjectManager.tailUpArrayList.add(new TailUp(450, 350 - i, 100, 100));
-
+			for (int i = 0; i < ObjectManager.bookInShelf.size(); i++) {
+				ObjectManager.bookInShelf.remove(ObjectManager.bookInShelf.get(i));
 			}
-			
 		}
 	}
 
