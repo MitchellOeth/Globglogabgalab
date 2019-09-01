@@ -1,3 +1,4 @@
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
@@ -7,7 +8,6 @@ public class Globglogabgalab {
 	public final static int height = 800;
 	GamePanel gamePanel;
 	JFrame frame;
-
 	Globglogabgalab() {
 		frame = new JFrame();
 		gamePanel = new GamePanel();

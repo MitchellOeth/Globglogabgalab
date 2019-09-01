@@ -10,6 +10,7 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,13 +19,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	ObjectManager objectManager = new ObjectManager(you);
 	public static int mouseX;
 	public static int mouseY;
-	Font titleFont = new Font("Arial", Font.BOLD, 48);
+	Font titleFont = new Font("Arial", Font.BOLD, 75);
 	Font normalFont = new Font("Arial", Font.PLAIN, 25);
 	Font gameFont = new Font("Arial", Font.BOLD, 75);
 	Font invincibleFont = new Font("Arial", Font.BOLD, 150);
 	Timer framerate;
 	boolean epilepsy = false;
 	int epilepsyCounter = 0;
+	Button level1 = new Button(125, 575, 200, 50);
+	Button level2 = new Button(450, 575, 200, 50);
+	Button level3 = new Button(775, 575, 200, 50);
+
 	public final static int MENU_STATE = 0;
 	public final static int GAME_STATE = 1;
 	public final static int END_STATE = 2;
@@ -33,7 +38,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static int lives = 3;
 	public static int winCounter = 75;
 	public static int isInvincible;
-	public static int level = 1;
 	public static BufferedImage globImg;
 	public static BufferedImage glob0Img;
 	public static BufferedImage glob1Img;
@@ -62,7 +66,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public static BufferedImage bookshelf1Img;
 	public static BufferedImage bookshelf2Img;
 	
-
 	public GamePanel() {
 		framerate = new Timer(1000 / 60, this);
 		addKeyListener(this);
@@ -133,7 +136,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public void keyPressed(KeyEvent event) {
 		if (event.getKeyCode() == KeyEvent.VK_ENTER) {
 			currentState++;
-
 		}
 		if (event.getKeyCode() == KeyEvent.VK_Z) {
 			epilepsy = true;
@@ -165,10 +167,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
 		graphic.setFont(titleFont);
 		graphic.setColor(Color.WHITE);
-		graphic.drawString("GLOBGLOGABGALAB", 225, 200);
+		graphic.drawString("GLOBGLOGABGALAB", 147, 200);
 		graphic.setFont(normalFont);
-		graphic.drawString("Press ENTER to start", 375, 400);
-		graphic.drawString("Press SPACE for instructions", 325, 600);
+		graphic.drawString("Press ENTER to start", 435, 300);
+		graphic.drawString("Press SPACE for instructions", 385, 400);
+		graphic.setColor(Color.GREEN);
+		level1.draw(graphic);
+		graphic.setColor(Color.YELLOW);
+		level2.draw(graphic);
+		graphic.setColor(Color.RED);
+		level3.draw(graphic);
+		graphic.setColor(Color.BLACK);
+		graphic.drawString("Easy", 195, 610);
+		graphic.drawString("Medium", 510, 610);
+graphic.drawString("Hard", 800, 610);
 		kill = 0;
 		lives = 3;
 		isInvincible = 0;

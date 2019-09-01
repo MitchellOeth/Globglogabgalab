@@ -14,7 +14,6 @@ public class TailUp extends GameObject {
 		lastY = y;
 		y = (prevY + nextY) * mod;
 		x = (prevX + nextX) * mod;
-
 	}
 
 	void draw(Graphics graphic) {
