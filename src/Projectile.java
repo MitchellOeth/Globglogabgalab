@@ -8,19 +8,22 @@ public class Projectile extends GameObject {
 	int ySpeed;
 	int type;
 	int bookType;
+	
 	static Random Randy = new Random();
 	Rectangle CollisionBox;
 
 	public Projectile(double x, double y, int width, int height, int type, int bookType) {
 		super(x, y, width, height);
-
 		ySpeed = Randy.nextInt(3) + 7;
 		xSpeed = (Randy.nextInt(10) - 5);
-
+	
 		this.bookType = bookType;
 		this.type = type;
 		CollisionBox = new Rectangle((int) x, (int) y, width, height);
-	}
+		
+			
+		}
+	
 
 	void update() {
 		x += xSpeed;

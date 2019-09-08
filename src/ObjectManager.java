@@ -105,7 +105,7 @@ public class ObjectManager {
 	}
 
 	void draw(Graphics graphic) {
-		
+
 		for (int i = 0; i < tailDownArrayList.size(); i++) {
 			tailDownArrayList.get(i).draw(graphic);
 		}
@@ -127,12 +127,28 @@ public class ObjectManager {
 	}
 
 	public void manageEnemies() {
-		if (frameCounter % 10 == 0) {
-			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 50, 0, bookCounter));
-			bookCounter++;
-			if (bookCounter > 6) {
-				bookCounter = 0;
-			}
+		if(GamePanel.difficulty==1) {
+			if (frameCounter % 5 == 0) {
+				projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 50, 0, bookCounter));
+				bookCounter++;
+				if (bookCounter > 6) {
+					bookCounter = 0;
+				}
+		}
+		if (frameCounter % 300 == 0) {
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 1, 0));
+		}
+		if (frameCounter % 180 == 0) {
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 2, 0));
+		}
+		}
+		if (GamePanel.difficulty==2) {
+			if (frameCounter % 10 == 0) {
+				projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 50, 0, bookCounter));
+				bookCounter++;
+				if (bookCounter > 6) {
+					bookCounter = 0;
+				}
 		}
 		if (frameCounter % 95 == 0) {
 			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 1, 0));
@@ -140,7 +156,21 @@ public class ObjectManager {
 		if (frameCounter % 600 == 0) {
 			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 2, 0));
 		}
+	}
+		if(GamePanel.difficulty==3) {
+			if (frameCounter % 10 == 0) {
+				projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 50, 0, bookCounter));
+				bookCounter++;
+				if (bookCounter > 6) {
+					bookCounter = 0;
+				}
+		}
+		if (frameCounter % 50 == 0) {
+			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 1, 0));
+		}
+		}
 		frameCounter++;
+	
 	}
 
 	void purgeObjects() {

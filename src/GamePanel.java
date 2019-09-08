@@ -29,6 +29,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	Button level1 = new Button(125, 575, 200, 50);
 	Button level2 = new Button(450, 575, 200, 50);
 	Button level3 = new Button(775, 575, 200, 50);
+	public static int difficulty;
 
 	public final static int MENU_STATE = 0;
 	public final static int GAME_STATE = 1;
@@ -180,7 +181,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.setColor(Color.BLACK);
 		graphic.drawString("Easy", 195, 610);
 		graphic.drawString("Medium", 510, 610);
-graphic.drawString("Hard", 800, 610);
+		graphic.drawString("Hard", 800, 610);
 		kill = 0;
 		lives = 3;
 		isInvincible = 0;
@@ -294,13 +295,29 @@ graphic.drawString("Hard", 800, 610);
 
 	}
 
-	public void mouseDragged(MouseEvent e) {
-
+	public void mouseClicked(MouseEvent event) {
+		if(event.getX()>=125&&event.getX()<=325&&event.getY()>=575&&event.getX()<=625&&currentState==MENU_STATE) {
+			difficulty = 1;
+		}
+		if(event.getX()>=450&&event.getX()<=650&&event.getY()>=575&&event.getX()<=625&&currentState==MENU_STATE) {
+			difficulty = 2;
+		}
+		if(event.getX()>=775&&event.getX()<=975&&event.getY()>=575&&event.getX()<=625&&currentState==MENU_STATE) {
+			difficulty = 3;
+		}
+		
+		
 	}
 
-	public void mouseMoved(MouseEvent e) {
-		mouseX = e.getX();
-		mouseY = e.getY();
+	public void mouseMoved(MouseEvent event) {
+		mouseX = event.getX();
+		mouseY = event.getY();
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
