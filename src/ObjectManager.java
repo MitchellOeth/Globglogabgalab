@@ -128,18 +128,12 @@ public class ObjectManager {
 
 	public void manageEnemies() {
 		if(GamePanel.difficulty==1) {
-			if (frameCounter % 5 == 0) {
+			if (frameCounter % 3 == 0) {
 				projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 50, 0, bookCounter));
 				bookCounter++;
 				if (bookCounter > 6) {
 					bookCounter = 0;
 				}
-		}
-		if (frameCounter % 300 == 0) {
-			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 1, 0));
-		}
-		if (frameCounter % 180 == 0) {
-			projectile.add(new Projectile(Projectile.Randy.nextInt(1000), -40, 75, 75, 2, 0));
 		}
 		}
 		if (GamePanel.difficulty==2) {
@@ -194,7 +188,7 @@ public class ObjectManager {
 						projectile.remove(projectile.get(i));
 					}
 				}
-			}
+			}//
 
 			for (int o = 0; o < tailUpArrayList.size(); o++) {
 				for (int i = 0; i < projectile.size(); i++) {

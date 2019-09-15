@@ -6,15 +6,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements ActionListener, KeyListener, MouseMotionListener {
+public class GamePanel extends JPanel implements ActionListener, KeyListener, MouseMotionListener, MouseListener {
 	static BigGlob you = new BigGlob(450, 350, 100, 100);
 	ObjectManager objectManager = new ObjectManager(you);
 	public static int mouseX;
@@ -70,6 +72,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	public GamePanel() {
 		framerate = new Timer(1000 / 60, this);
 		addKeyListener(this);
+		addMouseListener(this);
 		addMouseMotionListener(this);
 		try {
 			globImg = ImageIO.read(this.getClass().getResourceAsStream("glob.png"));
@@ -135,17 +138,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void keyPressed(KeyEvent event) {
-		if (event.getKeyCode() == KeyEvent.VK_ENTER) {
-			currentState++;
-		}
 		if (event.getKeyCode() == KeyEvent.VK_Z) {
 			epilepsy = true;
 		}
 		if (event.getKeyCode() == KeyEvent.VK_X) {
 			epilepsy = false;
 		}
-		if (currentState > END_STATE) {
-			currentState = MENU_STATE;
+		if(event.getKeyCode() == KeyEvent.VK_SPACE) {
+			JOptionPane.showMessageDialog(null, "Controls: Move the mouse to control glob."
+					+ "Goal: Try to hit as many books as possible and avoid the bookmarks ");
 		}
 	}
 
@@ -170,8 +171,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.setColor(Color.WHITE);
 		graphic.drawString("GLOBGLOGABGALAB", 147, 200);
 		graphic.setFont(normalFont);
-		graphic.drawString("Press ENTER to start", 435, 300);
-		graphic.drawString("Press SPACE for instructions", 385, 400);
+		graphic.drawString("Select a DIFFICULTY to Start", 435, 300);
+		graphic.drawString("Press SPACE for Instructions", 385, 400);
 		graphic.setColor(Color.GREEN);
 		level1.draw(graphic);
 		graphic.setColor(Color.YELLOW);
@@ -296,15 +297,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void mouseClicked(MouseEvent event) {
-		if(event.getX()>=125&&event.getX()<=325&&event.getY()>=575&&event.getX()<=625&&currentState==MENU_STATE) {
-			difficulty = 1;
-		}
-		if(event.getX()>=450&&event.getX()<=650&&event.getY()>=575&&event.getX()<=625&&currentState==MENU_STATE) {
-			difficulty = 2;
-		}
-		if(event.getX()>=775&&event.getX()<=975&&event.getY()>=575&&event.getX()<=625&&currentState==MENU_STATE) {
-			difficulty = 3;
-		}
+		
 		
 		
 	}
@@ -316,6 +309,43 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		if(mouseX>=125&&mouseX<=325&&mouseY>=575&&mouseY<=625&&currentState==MENU_STATE) {
+			difficulty = 1;
+			currentState++;
+		}
+		if(mouseX>=450&&mouseX<=650&&mouseY>=575&&mouseY<=625&&currentState==MENU_STATE) {
+			difficulty = 2;
+			currentState++;
+		}
+		if(mouseX>=775&&mouseX<=975&&mouseY>=575&&mouseY<=625&&currentState==MENU_STATE) {
+			difficulty = 3;
+			currentState++;
+		}
+		if (currentState > END_STATE) {
+			currentState = MENU_STATE;
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}

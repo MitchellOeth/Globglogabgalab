@@ -20,6 +20,7 @@ public class Globglogabgalab {
 
 	void setup() {
 		frame.addKeyListener(gamePanel);
+		frame.addMouseListener(gamePanel);
 		frame.add(gamePanel);
 		frame.setPreferredSize(new Dimension(width, height));
 		frame.pack();

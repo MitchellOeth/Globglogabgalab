@@ -6,7 +6,7 @@ public class BigGlob extends GameObject {
 	BigGlob(int x, int y, int width, int height) {
 		super(x, y, width, height);
 
-	}
+	}//
 
 	static double globY;
 
