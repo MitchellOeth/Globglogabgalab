@@ -83,7 +83,7 @@ public class ObjectManager {
 		purgeObjects();
 		if (GamePanel.lives < 1) {
 			GamePanel.currentState++;
-			GamePanel.lives = 3;
+			win = false;
 		}
 		if (GamePanel.winCounter >= 125) {
 			GamePanel.currentState++;

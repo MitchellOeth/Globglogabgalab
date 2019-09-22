@@ -138,6 +138,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 	}
 
 	public void keyPressed(KeyEvent event) {
+		if ((event.getKeyCode() == KeyEvent.VK_ENTER) && currentState == END_STATE) {
+			currentState=MENU_STATE;
+		}
 		if (event.getKeyCode() == KeyEvent.VK_Z) {
 			epilepsy = true;
 		}
@@ -145,8 +148,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 			epilepsy = false;
 		}
 		if(event.getKeyCode() == KeyEvent.VK_SPACE) {
-			JOptionPane.showMessageDialog(null, "Controls: Move the mouse to control glob."
-					+ "Goal: Try to hit as many books as possible and avoid the bookmarks ");
+			JOptionPane.showMessageDialog(null, "Controls: Move the mouse to control glob. " 
+					+ '\n' + "Goal: Try to hit as many books as possible. The green bar to the right of the screen will fill up as you read books, and empty as you miss books."
+					+ '\n' + "Make sure to avoid the bookmarks. If you hit one, you'll lose a life. You only have 3 so be careful!" 
+					+ '\n' + "Pro Tip: Put on the glasses to become invulnerable to bookmnarks for 3 seconds. ");
 		}
 	}
 
@@ -171,7 +176,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.setColor(Color.WHITE);
 		graphic.drawString("GLOBGLOGABGALAB", 147, 200);
 		graphic.setFont(normalFont);
-		graphic.drawString("Select a DIFFICULTY to Start", 435, 300);
+		graphic.drawString("Select a DIFFICULTY to Start", 385, 300);
 		graphic.drawString("Press SPACE for Instructions", 385, 400);
 		graphic.setColor(Color.GREEN);
 		level1.draw(graphic);
@@ -182,7 +187,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.setColor(Color.BLACK);
 		graphic.drawString("Easy", 195, 610);
 		graphic.drawString("Medium", 510, 610);
-		graphic.drawString("Hard", 800, 610);
+		graphic.drawString("Hard", 840, 610);
 		kill = 0;
 		lives = 3;
 		isInvincible = 0;
@@ -273,7 +278,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener, Mo
 		graphic.fillRect(0, 0, Globglogabgalab.width, Globglogabgalab.height);
 		graphic.setColor(Color.BLACK);
 		graphic.setFont(titleFont);
-		graphic.drawString("GAME OVER", 375, 200);
+		graphic.drawString("GAME OVER", 300, 200);
 		graphic.setFont(normalFont);
 		graphic.drawString("You read " + kill + " books", 400, 400);
 		graphic.drawString("Press ENTER to restart", 385, 600);
