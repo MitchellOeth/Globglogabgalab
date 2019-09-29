@@ -211,6 +211,13 @@ public class ObjectManager {
 				}
 			}
 		}
+if (GamePanel.difficulty == 1) {
+	for (int i = 0; i < projectile.size(); i++) {
+		if (projectile.get(i).type == 1) {
+			projectile.remove(projectile.get(i));
+		}
+	}
+}
 	}
 
 	public void go() {
